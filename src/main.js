@@ -1,20 +1,29 @@
 import express from "express";
 import { constants } from "node:http2";
-import userRouter from "./routes/users.router.js";
+import app from "./app.js";
 
-const app = express();
+import pool from "./lib/db.js";
 
-app.use(express.json());
-
-app.use("/users", userRouter);
-
-app.get("/", function (req, res) {
-  res.status(constants.HTTP_STATUS_OK).json({
-    success: true,
-    message: "Backend is running well",
-  });
+app.get("/", async function (req, res) {
+  // res.status(constants.HTTP_STATUS_OK).json({
+  //   success: true,
+  //   message: "Backend is running well",
+  // });
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({
+      success: true,
+      message: "Backend is running well",
+      time: result.rows[0],
+    });
+  } catch (error) {
+    res
+      .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+  }
 });
 
-app.listen(8888, function () {
-  console.log(`App listening on port 8888`);
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, function () {
+  console.log(`App listening on port ${PORT}`);
 });

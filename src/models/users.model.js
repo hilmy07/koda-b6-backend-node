@@ -1,56 +1,52 @@
+import pool from "../lib/db.js";
+
 const usersData = [];
 
-function findUserIndex(id) {
-  return usersData.findIndex((user) => user.id === id);
+export async function getAllUsers() {
+  const result = await pool.query(
+    "SELECT id, email, password FROM users ORDER BY id ASC",
+  );
+  return result.rows;
 }
 
-export function getAllUsers() {
-  return usersData;
-}
+export const getUserById = async (id) => {
+  const found = await pool.query(
+    "SELECT id, email, password FROM users WHERE id=$1",
+    [id],
+  );
+  return found.rows;
+};
 
-export function getUserById(id) {
-  const found = usersData.filter((user) => user.id === id);
-  if (found.length === 1) {
-    return found[0];
-  } else {
-    throw new Error("user not found");
-  }
-}
+export const getUserByEmail = async (email) => {
+  const found = await pool.query(
+    "SELECT id, email, password FROM users WHERE email=$1",
+    [email],
+  );
+  return found.rows[0];
+};
 
 let incrementID = usersData.length + 1;
 
-export function createUser(data) {
-  //   const id = incrementID++;
-  const newData = [{ id: incrementID++, ...data }];
+export const createUser = async (email, password) => {
+  const result = await pool.query(
+    "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
+    [email, password],
+  );
+  return result.rows[0];
+};
 
-  return usersData.push(newData);
-}
+export const updateUser = async (id, email, password) => {
+  const result = await pool.query(
+    "UPDATE users SET email = $1, password = $2 WHERE id=$3 RETURNING id,email,password",
+    [email, password, id],
+  );
+  return result.rows[0];
+};
 
-/**
- *
- * @param {number} id
- * @param {User} data
- */
-export function updateUser(id, data) {
-  const index = findUserIndex(id);
-  if (index !== -1) {
-    usersData[index] = {
-      ...usersData[index],
-      ...data,
-    };
-    return usersData[index];
-  } else {
-    throw new Error("user not found");
-  }
-}
-
-export function deleteUser(id) {
-  const found = findUserIndex(id);
-  const user = usersData[found];
-  if (found !== -1) {
-    delete usersData[found];
-    return user;
-  } else {
-    throw new Error("user not found");
-  }
-}
+export const deleteUser = async (id) => {
+  const result = await pool.query(
+    "DELETE FROM users WHERE id=$1 RETURNING NULL",
+    [id],
+  );
+  return result.rows[0];
+};
