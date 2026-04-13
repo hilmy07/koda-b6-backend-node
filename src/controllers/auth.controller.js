@@ -2,6 +2,44 @@ import hashedPassword from "../lib/hash.js";
 import { GenerateToken } from "../lib/jwt.js";
 import * as userModel from "../models/users.model.js";
 
+/**
+ * @openapi
+ * /auth/new:
+ *   post:
+ *     summary: Register user baru
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user@gmail.com
+ *               password:
+ *                 type: string
+ *                 example: 123456
+ *     responses:
+ *       201:
+ *         description: create user success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *       500:
+ *         description: internal server error
+ */
 export async function authRegister(req, res) {
   try {
     const data = req.body;
@@ -19,11 +57,52 @@ export async function authRegister(req, res) {
   } catch (error) {
     console.log(error);
     res.status(500).json({
+      success: false,
       message: "internal server error",
     });
   }
 }
 
+/**
+ * @openapi
+ * /auth:
+ *   post:
+ *     summary: Login user
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user@mail.com
+ *               password:
+ *                 type: string
+ *                 example: 123456
+ *     responses:
+ *       200:
+ *         description: login success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *       401:
+ *         description: wrong password or user not found
+ */
 export const authLogin = async (req, res) => {
   const data = req.body;
 
