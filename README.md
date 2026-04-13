@@ -61,11 +61,11 @@ Buat file `.env` di folder backend:
 ```env
 PORT=8000
 
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=your_db
-DB_USER=postgres
-DB_PASSWORD=your_password
+PG_HOST=localhost
+PG_PORT=5432
+PG_NAME=your_db
+PG_USER=postgres
+PG_PASSWORD=your_password
 
 JWT_SECRET=your_secret
 REDIS_URL=redis://127.0.0.1:6379
