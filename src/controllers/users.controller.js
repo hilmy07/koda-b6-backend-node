@@ -21,28 +21,6 @@ export async function getUserById(req, res) {
   });
 }
 
-export async function createUser(req, res) {
-  try {
-    const data = req.body;
-
-    // hash password
-    const hashedPassword = await argon2.hash(data.password);
-
-    const newUser = await userModel.createUser(data.email, hashedPassword);
-
-    res.json({
-      success: true,
-      message: "create user success",
-      results: newUser,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "internal server error",
-    });
-  }
-}
-
 export async function updateUser(req, res) {
   const id = parseInt(req.params.id);
   const { email, password } = req.body;
@@ -65,7 +43,7 @@ export async function updateUser(req, res) {
 
 export async function deleteUser(req, res) {
   const id = parseInt(req.params.id);
-  const delUser = await userModel.deleteUser(id);
+  const _ = await userModel.deleteUser(id);
   const users = await userModel.getAllUsers();
 
   res.json({
