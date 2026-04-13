@@ -31,6 +31,7 @@ Backend REST API untuk aplikasi Coffee Shop / E-Commerce menggunakan **Node.js, 
 ---
 
 ## 📂 Project Structure
+```
 src/
 ├── controllers/
 ├── handlers/
@@ -40,7 +41,7 @@ src/
 ├── routes/
 ├── docs/
 └── app.js
-
+```
 ---
 
 ## ⚙️ Installation & Setup
