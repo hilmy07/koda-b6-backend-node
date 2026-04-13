@@ -26,6 +26,7 @@ export async function authRegister(req, res) {
 
 export const authLogin = async (req, res) => {
   const data = req.body;
+
   const user = await userModel.getUserByEmail(data.email);
   if (!user) {
     return res.json({
@@ -43,9 +44,13 @@ export const authLogin = async (req, res) => {
     });
   }
 
-  const token = GenerateToken({ id: user.id, email: user.email });
+  // 🔥 FIX INI
+  const token = await GenerateToken({
+    id: user.id,
+    email: user.email,
+  });
 
-  res.json({
+  return res.json({
     success: true,
     message: "login success",
     result: user,
