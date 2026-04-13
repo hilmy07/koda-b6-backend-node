@@ -87,33 +87,40 @@ Gunakan Bearer Token:
 Authorization: Bearer <token>
 
 ## 📌 API Endpoints
-### 🔑 Auth
-Method	Endpoint	Description
-POST	/auth	Login user
-POST	/auth/new	Register user
-POST	/auth/logout	Logout user
+
+### 🔐 Auth
+
+| Method | Endpoint     | Description   |
+| ------ | ------------ | ------------- |
+| POST   | /auth/new    | Register user |
+| POST   | /auth        | Login user    |
+| POST   | /auth/logout | Logout user   |
 
 ### 👤 Users
-Method	Endpoint	Description
-GET	/users	Get all users
-GET	/users/:id	Get user by id
-DELETE	/users/:id	Delete user
-PATCH	/users/profile	Update profile
+| Method | Endpoint       | Description    |
+| ------ | -------------- | -------------- |
+| GET    | /users         | Get all users  |
+| GET    | /users/:id     | Get user by id |
+| DELETE | /users/:id     | Delete user    |
+| PATCH  | /users/profile | Update profile |
+
 
 ### 📦 Products
-Method	Endpoint	Description
-GET	/products	Get all products
-GET	/products/:id	Product detail
-GET	/products/recommended	Recommended products
-GET	/products/reviews	Product reviews
-POST	/products	Create product
-PATCH	/products/:id	Update product
-DELETE	/products/:id	Delete product
-🛒 Cart
-Method	Endpoint	Description
-POST	/carts	Add to cart
-GET	/cart-user	Get user cart
-DELETE	/cart-item	Delete cart item
+| Method | Endpoint              | Description          |
+| ------ | --------------------- | -------------------- |
+| GET    | /products             | Get all products     |
+| GET    | /products/:id         | Product detail       |
+| GET    | /products/recommended | Recommended products |
+| GET    | /products/reviews     | Product reviews      |
+| POST   | /products             | Create product       |
+| PATCH  | /products/:id         | Update product       |
+| DELETE | /products/:id         | Delete product       |
+
+### 🛒 Cart
+| Method | Endpoint   | Description      |
+| ------ | ---------- | ---------------- |
+| POST   | /carts     | Add to cart      |
+
 
 ### 🔥 Security
 JWT Authentication
