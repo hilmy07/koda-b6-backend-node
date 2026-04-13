@@ -63,7 +63,7 @@ export const getDetailProduct = async (id) => {
           FROM product_sizes ps
           JOIN sizes s ON ps.size_id = s.id
           WHERE ps.product_id = p.id
-          AND ps.size_id IN (1, 3, 4)
+          AND s.id IN (1,3,4)
           LIMIT 3
         ),
         '{}'::text[]
