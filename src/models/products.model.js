@@ -124,7 +124,9 @@ export const deleteProduct = async (id) => {
 };
 
 export const getProductReviews = async () => {
-  const result = await pool.query("SELECT * FROM product_reviews");
+  const result = await pool.query(
+    "SELECT p.name_product, COALESCE(u.fullname, '') AS Name, pr.message FROM product_reviews pr LEFT JOIN products p ON pr.product_id=p.id LEFT JOIN users u ON pr.user_id=u.id",
+  );
 
-  return result;
+  return result.rows;
 };
