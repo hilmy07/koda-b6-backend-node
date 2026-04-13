@@ -57,6 +57,8 @@ cd koda-b6-backend-node
 npm install
 ```
 ### 3. Setup Environment (.env)
+Buat file `.env` di folder backend:
+```env
 PORT=8000
 
 DB_HOST=localhost
@@ -67,6 +69,7 @@ DB_PASSWORD=your_password
 
 JWT_SECRET=your_secret
 REDIS_URL=redis://127.0.0.1:6379
+```
 
 ## ▶️ Run Project
 ### Development
