@@ -18,7 +18,7 @@ app.get("/", async function (req, res) {
   }
 });
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8888;
 app.listen(PORT, function () {
   console.log(`App listening on port ${PORT}`);
 });
