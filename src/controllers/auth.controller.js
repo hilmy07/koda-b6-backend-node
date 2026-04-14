@@ -1,6 +1,7 @@
 import hashedPassword from "../lib/hash.js";
 import { GenerateToken } from "../lib/jwt.js";
 import * as userModel from "../models/users.model.js";
+import argon2 from "argon2";
 
 /**
  * @openapi
