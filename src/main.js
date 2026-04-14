@@ -1,14 +1,9 @@
-import express from "express";
 import { constants } from "node:http2";
 import app from "./app.js";
 
 import pool from "./lib/db.js";
 
 app.get("/", async function (req, res) {
-  // res.status(constants.HTTP_STATUS_OK).json({
-  //   success: true,
-  //   message: "Backend is running well",
-  // });
   try {
     const result = await pool.query("SELECT NOW()");
     res.json({

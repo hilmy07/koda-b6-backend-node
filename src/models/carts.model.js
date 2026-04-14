@@ -26,3 +26,11 @@ export const createCartItem = async ({
 
   return result.rows[0];
 };
+
+export const getCarts = async () => {
+  const result = await pool.query(
+    "SELECT u.fullname, p.name_product, c.quantity, c.size, c.variant FROM carts c LEFT JOIN users u ON c.user_id=u.id LEFT JOIN products p ON c.product_id=p.id",
+  );
+
+  return result.rows;
+};

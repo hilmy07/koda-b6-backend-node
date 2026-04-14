@@ -1,0 +1,28 @@
+node_modules
+npm-debug.log
+yarn-error.log
+
+# git
+.git
+.gitignore
+
+# env
+.env
+.env.* 
+
+# logs
+logs
+*.log
+
+# build output (kalau nanti pakai TS / build tool)
+dist
+build
+
+# docker
+Dockerfile
+docker-compose.yml
+
+# OS / editor
+.DS_Store
+.vscode
+.idea

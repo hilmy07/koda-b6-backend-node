@@ -89,10 +89,19 @@ export async function getUserById(req, res) {
  *             properties:
  *               email:
  *                 type: string
- *                 example: user@gmail.com
+ *                 example: hilmy@mail.com
  *               password:
  *                 type: string
  *                 example: 123456
+ *               fullname:
+ *                 type: string
+ *                 example: hilmy
+ *               phone:
+ *                 type: string
+ *                 example: 0811777474
+ *               address:
+ *                 type: string
+ *                 example: Surabaya
  *     responses:
  *       200:
  *         description: update user success
@@ -101,9 +110,18 @@ export async function getUserById(req, res) {
  */
 export async function updateUser(req, res) {
   const id = parseInt(req.params.id);
-  const { email, password } = req.body;
+  const { email, password, fullname, phone, address } = req.body;
 
-  const updatedUser = await userModel.updateUser(id, email, password);
+  const hashedPassword = await argon2.hash(password);
+
+  const updatedUser = await userModel.updateUser(
+    id,
+    email,
+    hashedPassword,
+    fullname,
+    phone,
+    address,
+  );
 
   if (!updatedUser) {
     return res.status(404).json({

@@ -21,7 +21,7 @@ import * as userModel from "../models/users.model.js";
  *             properties:
  *               email:
  *                 type: string
- *                 example: user@gmail.com
+ *                 example: user@mail.com
  *               password:
  *                 type: string
  *                 example: 123456
@@ -82,7 +82,7 @@ export async function authRegister(req, res) {
  *             properties:
  *               email:
  *                 type: string
- *                 example: user@mail.com
+ *                 example: hilmy@mail.com
  *               password:
  *                 type: string
  *                 example: 123456

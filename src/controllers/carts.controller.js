@@ -95,3 +95,26 @@ export async function createCart(req, res) {
     });
   }
 }
+
+/**
+ * @openapi
+ * /carts:
+ *   get:
+ *     summary: Ambil carts
+ *     tags:
+ *       - Cart
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: list carts
+ */
+export async function getCarts(_, res) {
+  const carts = await cartModel.getCarts();
+
+  res.json({
+    success: true,
+    message: "list carts",
+    result: carts,
+  });
+}
