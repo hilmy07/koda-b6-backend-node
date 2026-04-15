@@ -1,0 +1,7 @@
+CREATE TABLE forgot_password (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(80) NOT NULL,
+    code VARCHAR(10),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
