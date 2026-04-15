@@ -53,7 +53,7 @@ jobs:
             sleep 10
 
             docker run --rm \
-              --network=server-hilmy-node_default \
+              --network=server-hilmy-node_webapps \
               migrate/migrate:latest \
               -source github://hilmy07/koda-b6-backend-node/migrations \
               -database postgresql://postgres:1@postgres:5432/postgres?sslmode=disable \
