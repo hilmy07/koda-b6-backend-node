@@ -26,10 +26,10 @@ export function authMiddleware(req, res, next) {
 
   // const
   next();
-  if (authHeader || authHeader.startsWith(prefix)) {
-    return res.status(200).json({
-      success: true,
-      message: "Authorized",
-    });
-  }
+  // if (authHeader || authHeader.startsWith(prefix)) {
+  //   return res.status(200).json({
+  //     success: true,
+  //     message: "Authorized",
+  //   });
+  // }
 }
