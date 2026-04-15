@@ -47,5 +47,5 @@ jobs:
           script: |
             cd server-hilmy-node 
             docker compose pull 
-            docker run --rm --network=webapps migrate/migrate:latest -source github://hilmy07/koda-b6-backend-node/migrations -database postgresql://postgres:1@pg:5432/postgres?sslmode=disable up 
+            docker run --rm --network=server-hilmy-node migrate/migrate:latest -source github://hilmy07/koda-b6-backend-node/migrations -database postgresql://postgres:1@pg:5432/postgres?sslmode=disable up 
             docker compose up backend -d
