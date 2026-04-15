@@ -24,11 +24,12 @@ export function authMiddleware(req, res, next) {
 
   req.user = decoded;
 
+  // const
+  next();
   if (authHeader || authHeader.startsWith(prefix)) {
     return res.status(200).json({
       success: true,
       message: "Authorized",
     });
-    next();
   }
 }
