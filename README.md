@@ -148,9 +148,3 @@ GitHub: https://github.com/hilmy07
 MIT License
 
 ---
-Kalau kamu mau, aku bisa upgrade lagi jadi:
-- 🔥 README versi **portfolio ATS HR (biar kelihatan senior backend)**
-- 🔥 atau tambahin **architecture diagram + Redis flow + JWT flow**
-- 🔥 atau bikin versi “Open Source Professional Level”
-
-tinggal bilang 👍
