@@ -6,7 +6,7 @@ export function authMiddleware(req, res, next) {
 
   if (!authHeader || !authHeader.startsWith(prefix)) {
     return res.status(401).json({
-      success: "false",
+      success: false,
       message: "Unauthorized",
     });
   }
@@ -17,7 +17,7 @@ export function authMiddleware(req, res, next) {
 
   if (!decoded) {
     return res.status(401).json({
-      success: "false",
+      success: false,
       message: "Invalid token",
     });
   }
