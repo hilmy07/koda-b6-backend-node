@@ -50,7 +50,7 @@ export async function authRegister(req, res) {
 
     const newUser = await userModel.createUser(data.email, hashedPassword);
 
-    res.json({
+    res.status(201).json({
       success: true,
       message: "create user success",
       results: newUser,
@@ -109,7 +109,7 @@ export const authLogin = async (req, res) => {
 
   const user = await userModel.getUserByEmail(data.email);
   if (!user) {
-    return res.json({
+    return res.status(401).json({
       success: false,
       message: "user not found",
     });
@@ -118,7 +118,7 @@ export const authLogin = async (req, res) => {
   const isValid = hashedPassword(user.password, data.password);
 
   if (!isValid) {
-    return res.json({
+    return res.status(401).json({
       success: false,
       message: "wrong password",
     });
@@ -130,7 +130,7 @@ export const authLogin = async (req, res) => {
     email: user.email,
   });
 
-  return res.json({
+  return res.status(200).json({
     success: true,
     message: "login success",
     result: user,
