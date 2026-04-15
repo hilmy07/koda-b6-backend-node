@@ -45,7 +45,18 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd server-hilmy-node 
-            docker compose pull 
-            docker run --rm --network=server-hilmy-node_default migrate/migrate:latest -source github://hilmy07/koda-b6-backend-node/migrations -database postgresql://postgres:1@pg:5432/postgres?sslmode=disable up 
-            docker compose up backend -d
+            cd server-hilmy-node
+            docker compose pull
+            docker compose up -d postgres
+
+            echo "Waiting for database..."
+            sleep 10
+
+            docker run --rm \
+              --network=server-hilmy-node_default \
+              migrate/migrate:latest \
+              -source github://hilmy07/koda-b6-backend-node/migrations \
+              -database postgresql://postgres:1@postgres:5432/postgres?sslmode=disable \
+              up
+
+            docker compose up -d backend
